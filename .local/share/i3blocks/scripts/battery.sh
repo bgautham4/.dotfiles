@@ -27,6 +27,6 @@ echo "$symbol ${amt}% (${status})"
 echo "$symbol ${amt}%"
 echo "$color"
 
-[ "$urgent" = 1 ] && exit 33
+[ "$urgent" = 1 ] && exit 33 || exit 0
 
 

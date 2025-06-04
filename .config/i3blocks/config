@@ -51,7 +51,7 @@ STEP=5%
 
 # Battery indicator
 [battery]
-interval=30
+interval=60
 signal=12
 command=$SCRIPT_DIR/battery.sh
 
@@ -61,6 +61,12 @@ interval=once
 signal=13
 command=$SCRIPT_DIR/bluetooth.sh
 
+# Date Time
+[time]
+interval=60
+command=date '+%Y-%m-%d(%a) %H:%M'
+
+#NOTE: Unused stuff below
 
 # Memory usage
 #
@@ -121,11 +127,6 @@ label=LOAD
 interval=10
 
 
-# Date Time
-#
-[time]
-command=date '+%Y-%m-%d(%a) %H:%M'
-interval=60
 
 # Generic media player support
 #

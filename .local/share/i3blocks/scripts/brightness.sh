@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# usage brightness.sh
+
+#i3blocks will supply the BLOCK_BUTTON variable on click/scroll
+
 # CONFIGURABLE
 INCREMENT=10             # % increase/decrease
 DDC_VCP_CODE=10          # VCP code for brightness
@@ -38,9 +42,9 @@ esac
 
 if [ "$ACTIVE_DISPLAY" = "$EXTERNAL_NAME" ]; then
     [ -n "$BLOCK_BUTTON" ] && set_external_brightness "$inc_or_dec" "$INCREMENT" 
-    echo " $(get_external_brightness)"
+    echo "󰃟 $(get_external_brightness)"
 else
     [ -n "$BLOCK_BUTTON" ] && set_internal_brightness "${inc_or_dec}${INCREMENT}" 
-    echo " $(get_internal_brightness)"
+    echo "󰃟 $(get_internal_brightness)"
 fi
 

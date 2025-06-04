@@ -14,7 +14,7 @@ esac
 ismuted=$(pactl get-sink-mute "$default_sink" | cut -d' ' -f2)
 
 if [ "$ismuted" = "yes" ]; then
-    echo "🔇"
+    echo " "
 else
     vol=$(pactl get-sink-volume "$default_sink" | grep -o '[0-9]\+%' | head -n 1)
     vol_number=${vol%\%}

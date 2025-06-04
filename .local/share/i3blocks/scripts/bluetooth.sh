@@ -2,7 +2,7 @@
 
 # Check if Bluetooth is powered on
 powered=$(bluetoothctl show | grep "Powered: yes")
-[ -z "$powered" ] && exit 33 #Nothing to display
+[ -z "$powered" ] && exit 0 #Nothing to display
 
 #Delay
 sleep 5

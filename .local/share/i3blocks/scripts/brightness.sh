@@ -40,11 +40,14 @@ case "$BLOCK_BUTTON" in
         ;;
 esac
 
+full_text=""
+
 if [ "$ACTIVE_DISPLAY" = "$EXTERNAL_NAME" ]; then
     [ -n "$BLOCK_BUTTON" ] && set_external_brightness "$inc_or_dec" "$INCREMENT" 
-    echo "󰃟 $(get_external_brightness)"
+    full_text="󰃟 $(get_external_brightness)"
 else
     [ -n "$BLOCK_BUTTON" ] && set_internal_brightness "${inc_or_dec}${INCREMENT}" 
-    echo "󰃟 $(get_internal_brightness)"
+    full_text="󰃟 $(get_internal_brightness)"
 fi
-
+#color
+printf '{"full_text": "%s", "short_text": "%s", "color": "%s"}\n' "$full_text" "$full_text" "$(xrdb -get i3blocks.foreground)"

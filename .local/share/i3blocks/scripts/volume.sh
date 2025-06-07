@@ -6,6 +6,7 @@ default_sink=$(pactl get-default-sink)
 # Handle mouse clicks
 case "$BLOCK_BUTTON" in
     1) pactl set-sink-mute "$default_sink" toggle ;;  # Left click: mute/unmute
+    3) pavucontrol -t 3 ;; #For GUI based edit
     4) pactl set-sink-volume "$default_sink" +5% ;;   # Scroll up: volume up
     5) pactl set-sink-volume "$default_sink" -5% ;;   # Scroll down: volume down
 esac
@@ -13,8 +14,9 @@ esac
 # Refresh info after click
 ismuted=$(pactl get-sink-mute "$default_sink" | cut -d' ' -f2)
 
+full_text=""
 if [ "$ismuted" = "yes" ]; then
-    echo " "
+    full_text=" "
 else
     vol=$(pactl get-sink-volume "$default_sink" | grep -o '[0-9]\+%' | head -n 1)
     vol_number=${vol%\%}
@@ -27,6 +29,7 @@ else
         symbol="  "
     fi
 
-    echo "$symbol $vol"
+    full_text="$symbol $vol"
 fi
 
+printf '{"full_text": "%s", "short_text": "%s", "color": "%s"}\n' "$full_text" "$full_text" "$(xrdb -get i3blocks.foreground)"

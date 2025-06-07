@@ -2,10 +2,8 @@
 
 # Check if Bluetooth is powered on
 powered=$(bluetoothctl show | grep "Powered: yes")
-[ -z "$powered" ] && exit 0 #Nothing to display
+[ -z "$powered" ] && echo "" && exit 0 #Nothing to display
 
-#Delay
-sleep 5
 # Get list of connected devices
 connected_devices=$(bluetoothctl devices Connected | awk '{print $2}' | while read -r mac; do
     if bluetoothctl info "$mac" | grep -q "Connected: yes"; then

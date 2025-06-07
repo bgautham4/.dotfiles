@@ -28,8 +28,8 @@ else
     status="Chr"
 fi
 
-echo "$symbol ${amt}% (${status})"
-echo "$symbol ${amt}%"
-echo "$color"
+full_text="$symbol ${amt}% (${status})"
+short_text="$symbol ${amt}%"
+printf '{"full_text": "%s", "short_text": "%s", "color": "%s"}\n' "$full_text" "$short_text" "$color"
 
 [ "$urgent" -eq 1 ] && exit 33 || exit 0

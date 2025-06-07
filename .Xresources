@@ -1,0 +1,20 @@
+#include "/home/gautham/.config/xcolors/orange_teal_sunset"
+
+
+*.foreground:  FOREGROUND 
+*.background:  BACKGROUND 
+*.cursorColor: FOREGROUND
+*.black:       BLACK 
+*.at_fg:       AT_FG
+*.dark_fg:     DARK_FG
+*.dark_bg:     DARK_BG 
+*.color0:      COLOR0 
+*.color1:      COLOR1
+*.color2:      COLOR2
+*.color3:      COLOR3
+*.color7:      COLOR7
+
+rofi.color-window: BACKGROUND, BACKGROUND, BACKGROUND
+rofi.color-normal: BACKGROUND, FOREGROUND, BACKGROUND, BACKGROUND, COLOR1
+rofi.color-active: BACKGROUND, FOREGROUND, BACKGROUND, BACKGROUND, COLOR1
+rofi.color-urgent: BACKGROUND, FOREGROUND, BACKGROUND, BACKGROUND, COLOR1

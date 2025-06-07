@@ -24,6 +24,11 @@ font pango:NotoSans-Regular 12
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec --no-startup-id xrdb /home/gautham/.Xresources
+
+#Compositor
+exec --no-startup-id picom --no-fading-openclose --fade-in-step=1 --fade-out-step=1 --fade-delta=0 -b
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -45,13 +50,13 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-#Browser setting
+#App class settings
 set $bclass "Brave-browser"
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2: Browser 󰈹"
-set $ws3 "3"
+set $ws1 "1:  "
+set $ws2 "2: 󰈹 "
+set $ws3 "3:  "
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -65,21 +70,26 @@ include ./include/key-bindings.conf
 assign [class=$bclass] $ws2
 
 #Colors
-set_from_resource $black i3wm.color0 #000000
-#Deep orange color palette
-set_from_resource $ctxtl i3wm.color_textl #FFFFFF
-set_from_resource $ctxtd i3wm.color_textd #000000
-set_from_resource $ctxt  i3wm.color_text #FBE9E7
-set_from_resource $cxlight i3wm.col_xlight #FBE9E7
-set_from_resource $clight i3wm.col_light #FFAB91
-set_from_resource $cdark  i3wm.col_dark  #FF5722
-set_from_resource $cxdark i3wm.col_xdark #BF360C
+set $transp #00000000
+set_from_resource $black i3wm.black #000000
+#Orange teal pallete
+set_from_resource $bg i3wm.background
+set_from_resource $fg i3wm.foreground
+#invert fg bg for focus
+set_from_resource $fbg i3wm.foreground
+set_from_resource $ffg i3wm.background
+#darker fg and bg, invert this for focused_inactive
+set_from_resource $dfg i3wm.dark_fg
+set_from_resource $dbg i3wm.dark_bg
+#Attention background
+set_from_resource $abg i3wm.at_fg
+
 # window colors
 #			    border                      background                  text                         indicator	   child border
-client.focused		    $clight                     $clight                     $ctxtd                        $clight	   $clight
-client.unfocused	    $black                      $black                      $ctxtl                        $black	   $black
-client.focused_inactive	    $cxlight                    $cxlight                    $ctxtd                        $black	   $black
-client.urgent		    $cxdark                     $cxdark                     $ctxt                         $black	   $cxdark
+client.focused		    $fbg                        $fbg                        $ffg                          $fbg	           $fbg
+client.unfocused	    $bg                         $bg                         $fg                           $transp	   $transp
+client.focused_inactive	    $dfg                        $dfg                        $dbg			  $transp	   $transp
+client.urgent		    $abg                        $abg                        $bg                           $abg	           $abg
 
 # bar
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -89,12 +99,12 @@ bar {
         status_command SCRIPT_DIR=$XDG_DATA_HOME/i3blocks/scripts/ i3blocks
 	position top
 	colors {
-		background $black
+		background $bg
 	    	separator #757575
 		#                  border             background         text
-		focused_workspace  $clight            $clight           $ctxtd
-		inactive_workspace $black             $black            $ctxtl
-		urgent_workspace   $cxdark            $cxdark           $ctxtl
+		focused_workspace  $fbg               $fbg              $ffg
+		inactive_workspace $bg                $bg               $fg
+		urgent_workspace   $abg               $abg              $bg
 	}
 }
 
@@ -108,7 +118,7 @@ smart_gaps inverse_outer
 hide_edge_borders none
 
 #Wallpaper
-exec_always --no-startup-id feh --bg-scale /home/gautham/Desktop/wallpapers/jwst_space.jpg
+exec_always --no-startup-id feh --bg-scale /home/gautham/Desktop/wallpapers/orange-sky.jpg
 
 #Window borders
 default_border pixel 4

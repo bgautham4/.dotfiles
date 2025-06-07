@@ -34,12 +34,14 @@ markup=none
 interval=once
 signal=9
 command=$SCRIPT_DIR/brightness.sh
+format=json
 
 #Sound
 [volume]
 interval=once
 signal=10
 command=$SCRIPT_DIR/volume.sh
+format=json
 STEP=5%
 
 #Mic
@@ -47,6 +49,7 @@ STEP=5%
 interval=once
 signal=11
 command=$SCRIPT_DIR/mic.sh
+format=json
 STEP=5%
 
 # Battery indicator
@@ -54,6 +57,7 @@ STEP=5%
 interval=60
 signal=12
 command=$SCRIPT_DIR/battery.sh
+format=json
 
 #Bluetooth device
 [bluetooth]
@@ -64,7 +68,7 @@ command=$SCRIPT_DIR/bluetooth.sh
 # Date Time
 [time]
 interval=60
-command=date '+%Y-%m-%d(%a) %H:%M'
+command=$SCRIPT_DIR/date.sh
 
 #NOTE: Unused stuff below
 

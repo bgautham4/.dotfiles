@@ -24,8 +24,6 @@ font pango:NotoSans-Regular 12
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id xrdb /home/gautham/.Xresources
-
 #Compositor
 exec --no-startup-id picom --no-fading-openclose --fade-in-step=1 --fade-out-step=1 --fade-delta=0 -b
 
@@ -34,7 +32,7 @@ exec --no-startup-id picom --no-fading-openclose --fade-in-step=1 --fade-out-ste
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --ignore-empty-password
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -43,6 +41,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 #Notification daemon
 exec --no-startup-id dunst
+#Redshift
+exec --no-startup-id redshift
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -52,6 +52,7 @@ tiling_drag modifier titlebar
 
 #App class settings
 set $bclass "Brave-browser"
+set $file_explorer "Thunar"
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:  "
@@ -68,6 +69,7 @@ set $ws10 "10"
 include ./include/key-bindings.conf
 #Force app to load in certain workspaces
 assign [class=$bclass] $ws2
+assign [class=$file_explorer] $ws3
 
 #Colors
 set $transp #00000000
@@ -79,8 +81,8 @@ set_from_resource $fg i3wm.foreground
 set_from_resource $fbg i3wm.foreground
 set_from_resource $ffg i3wm.background
 #darker fg and bg, invert this for focused_inactive
-set_from_resource $dfg i3wm.dark_fg
-set_from_resource $dbg i3wm.dark_bg
+set_from_resource $dfg i3wm.fg1
+set_from_resource $dbg i3wm.bg1
 #Attention background
 set_from_resource $abg i3wm.at_fg
 
@@ -96,6 +98,7 @@ client.urgent		    $abg                        $abg                        $bg  
 # finds out, if available)
 bar {
   	#status_command i3status -c $XDG_CONFIG_HOME/i3status/i3status.conf
+	font pango:NotoSans-Regular 12
         status_command SCRIPT_DIR=$XDG_DATA_HOME/i3blocks/scripts/ i3blocks
 	position top
 	colors {
@@ -121,8 +124,8 @@ hide_edge_borders none
 exec_always --no-startup-id feh --bg-scale /home/gautham/Desktop/wallpapers/orange-sky.jpg
 
 #Window borders
-default_border pixel 4
-default_floating_border pixel 4
+default_border pixel 2
+default_floating_border pixel 2
 #Dont need borders when we have only a single window
 hide_edge_borders smart 
 #If certain windows need special treatment, use below eg: for browser

@@ -15,39 +15,45 @@ ACTIVE_DISPLAY=$(xrandr --current | awk '/ connected primary/ {print $1}') || ex
 
 # Function to get brightness
 get_internal_brightness() {
-    printf "%.0f%%" "$(xbacklight -get)"
+    printf "%.0f" "$(xbacklight -get)"
 }
 
 set_internal_brightness() {
-    xbacklight -inc "$1"
+    xbacklight -set "$1"
 }
 
 get_external_brightness() {
-    printf "%d%%" "$(ddcutil getvcp "$DDC_VCP_CODE" 2>/dev/null | grep -oP 'current value\s*=\s*\K\d+')"
+    printf "%d" "$(ddcutil getvcp "$DDC_VCP_CODE" 2>/dev/null | grep -oP 'current value\s*=\s*\K\d+')"
 }
 
 set_external_brightness() {
-    ddcutil setvcp "$DDC_VCP_CODE" "$1" "$2" > /dev/null
+    ddcutil setvcp "$DDC_VCP_CODE" "$1" 
 }
 
-# Main logic
+BR=0
+if [ "$ACTIVE_DISPLAY" = "$EXTERNAL_NAME" ]; then 
+    BR=$(get_external_brightness)
+else
+    BR=$(get_internal_brightness)
+fi
+
 case "$BLOCK_BUTTON" in
     3|4)  # Scroll up or Right click
-        inc_or_dec='+'
+        ((BR += INCREMENT))
+        [ "$BR" -gt 100 ] && BR=100
         ;;
     1|5)  # Scroll down or left click
-        inc_or_dec='-'
+        ((BR -= INCREMENT))
+        [ "$BR" -lt 0 ] && BR=0
         ;;
 esac
 
-full_text=""
-
-if [ "$ACTIVE_DISPLAY" = "$EXTERNAL_NAME" ]; then
-    [ -n "$BLOCK_BUTTON" ] && set_external_brightness "$inc_or_dec" "$INCREMENT" 
-    full_text="󰃟 $(get_external_brightness)"
+if [ "$ACTIVE_DISPLAY" = "$EXTERNAL_NAME" ] && [ -n "$BLOCK_BUTTON" ]; then
+    set_external_brightness "$BR"
 else
-    [ -n "$BLOCK_BUTTON" ] && set_internal_brightness "${inc_or_dec}${INCREMENT}" 
-    full_text="󰃟 $(get_internal_brightness)"
+    set_internal_brightness "$BR"
 fi
-#color
+
+full_text="󰃟 ${BR}%"
+
 printf '{"full_text": "%s", "short_text": "%s", "color": "%s"}\n' "$full_text" "$full_text" "$(xrdb -get i3blocks.foreground)"

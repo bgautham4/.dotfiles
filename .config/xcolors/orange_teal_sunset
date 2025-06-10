@@ -1,15 +1,17 @@
 #define FG #fcecdd
-#define AT_FG #fcc36c
-#define DARK_FG #b2a07e
 #define BG #004450
-#define DARK_BG #042d37
+#define AT_FG #fcc36c
+#define FG1 #deb887
+#define FG2 #b2a07e
+#define BG1 #042d37
 #define BLACK #000000
 
 #define FOREGROUND FG
 #define BACKGROUND BG
 
 #define COLOR0 FOREGROUND
-#define COLOR1 AT_FG
-#define COLOR2 DARK_FG
-#define COLOR3 DARK_BG
+#define COLOR1 FG1
+#define COLOR2 FG2
+#define COLOR3 AT_FG
+#define COLOR4 BG1
 #define COLOR7 BACKGROUND

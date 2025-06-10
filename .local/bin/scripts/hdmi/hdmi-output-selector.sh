@@ -2,7 +2,7 @@
 
 #Usage hdmi-output-selector.sh
 
-#A dmenu based output config picker using autorandr(1)
+#A menu based output config picker using autorandr(1)
 
 function change_and_notify {
     autorandr -l "$1" && notify-send --urgency=low -t 5000 "Display config" "$1" 
@@ -13,7 +13,7 @@ function change_and_notify {
 CON=$(</sys/class/drm/card1-HDMI-A-1/status) || exit 1
 [ "$CON" = 'disconnected' ] && notify-send --urgency=low -t 5000 "Error" "No HDMI devices" && exit 1
 
-type=$(autorandr --list | dmenu -p "Select display config:")
+type=$(autorandr --list | rofi -dmenu -p "Select display config:")
 [ -n "$type" ] && change_and_notify "$type" || exit 0
 
 #Send signal to update brightness value

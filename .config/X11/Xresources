@@ -1,0 +1,17 @@
+#include "/home/gautham/.config/xcolors/orange_teal_sunset"
+
+
+*.foreground:  FOREGROUND 
+*.background:  BACKGROUND 
+*.cursorColor: FOREGROUND
+*.black:       BLACK 
+*.at_fg:       AT_FG
+*.fg1:         FG1
+*.fg2:         FG2
+*.bg1:         BG1
+*.color0:      COLOR0 
+*.color1:      COLOR1
+*.color2:      COLOR2
+*.color3:      COLOR3
+*.color4:      COLOR4
+*.color7:      COLOR7

@@ -37,21 +37,23 @@ else
     BR=$(get_internal_brightness)
 fi
 
-case "$BLOCK_BUTTON" in
-    3|4)  # Scroll up or Right click
-        ((BR += INCREMENT))
-        [ "$BR" -gt 100 ] && BR=100
-        ;;
-    1|5)  # Scroll down or left click
-        ((BR -= INCREMENT))
-        [ "$BR" -lt 0 ] && BR=0
-        ;;
-esac
+if [ -n "$BLOCK_BUTTON" ]; then
+    case "$BLOCK_BUTTON" in
+        3|4)  # Scroll up or Right click
+            ((BR += INCREMENT))
+            [ "$BR" -gt 100 ] && BR=100
+            ;;
+        1|5)  # Scroll down or left click
+            ((BR -= INCREMENT))
+            [ "$BR" -lt 0 ] && BR=0
+            ;;
+    esac
 
-if [ "$ACTIVE_DISPLAY" = "$EXTERNAL_NAME" ] && [ -n "$BLOCK_BUTTON" ]; then
-    set_external_brightness "$BR"
-else
-    set_internal_brightness "$BR"
+    if [ "$ACTIVE_DISPLAY" = "$EXTERNAL_NAME" ]; then
+        set_external_brightness "$BR"
+    else
+        set_internal_brightness "$BR"
+    fi
 fi
 
 full_text="󰃟 ${BR}%"

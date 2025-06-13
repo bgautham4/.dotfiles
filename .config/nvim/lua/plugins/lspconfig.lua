@@ -71,8 +71,6 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
-          -- Display diagnostics in floating window
-          map('<C-d>', vim.diagnostic.open_float, 'Floating window with LSP [D]iagnostic message')
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed

@@ -1,17 +1,25 @@
-#include "/home/gautham/.config/xcolors/orange_teal_sunset"
+#include "/home/gautham/.config/xcolors/blue_gray"
 
+
+*.font:          NotoSans-Regular:size=13
 
 *.foreground:  FOREGROUND 
 *.background:  BACKGROUND 
+*.selbackground: COLOR8
+*.selforeground: COLOR0
 *.cursorColor: FOREGROUND
 *.black:       BLACK 
-*.at_fg:       AT_FG
-*.fg1:         FG1
-*.fg2:         FG2
-*.bg1:         BG1
-*.color0:      COLOR0 
+*.color0:      COLOR0
 *.color1:      COLOR1
 *.color2:      COLOR2
 *.color3:      COLOR3
 *.color4:      COLOR4
+*.color5:      COLOR5
+*.color6:      COLOR6
 *.color7:      COLOR7
+*.color8:      COLOR8
+
+dmenu.highlight:     COLOR9 
+dmenu.selhighlight:  COLOR10
+
+

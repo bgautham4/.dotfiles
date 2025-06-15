@@ -74,24 +74,24 @@ assign [class=$file_explorer] $ws3
 #Colors
 set $transp #00000000
 set_from_resource $black i3wm.black #000000
-#Orange teal pallete
+
+set_from_resource $sfg i3wm.selforeground
+set_from_resource $sbg i3wm.selbackground
+
 set_from_resource $bg i3wm.background
 set_from_resource $fg i3wm.foreground
-#invert fg bg for focus
-set_from_resource $fbg i3wm.foreground
-set_from_resource $ffg i3wm.background
-#darker fg and bg, invert this for focused_inactive
-set_from_resource $dfg i3wm.fg1
-set_from_resource $dbg i3wm.bg1
-#Attention background
-set_from_resource $abg i3wm.at_fg
+
+set_from_resource $ifg i3wm.color2
+set_from_resource $ibg i3wm.color6
+
+set_from_resource $color5 i3wm.color5
 
 # window colors
 #			    border                      background                  text                         indicator	   child border
-client.focused		    $fbg                        $fbg                        $ffg                          $fbg	           $fbg
+client.focused		    $sbg                        $sbg                        $sfg                          $fg	           $fg
 client.unfocused	    $bg                         $bg                         $fg                           $transp	   $transp
-client.focused_inactive	    $dfg                        $dfg                        $dbg			  $transp	   $transp
-client.urgent		    $abg                        $abg                        $bg                           $abg	           $abg
+client.focused_inactive	    $sbg                        $sbg                        $sfg			  $transp	   $transp
+client.urgent		    $fg                         $fg                         $bg                           $sfg	           $sfg
 
 # bar
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -103,11 +103,11 @@ bar {
 	position top
 	colors {
 		background $bg
-	    	separator #757575
+	    	separator $fg
 		#                  border             background         text
-		focused_workspace  $fbg               $fbg              $ffg
-		inactive_workspace $bg                $bg               $fg
-		urgent_workspace   $abg               $abg              $bg
+		focused_workspace  $sbg               $sbg               $sfg
+		inactive_workspace $bg                $bg                $fg
+		urgent_workspace   $fg                $fg                $bg
 	}
 }
 

@@ -17,7 +17,7 @@ color='#ffffff'
 urgent=0
 if [ "$ac" -eq 0 ]; then
     symbol=" "
-    color="#44ce1b"
+    color="#66FF00"
     status="Dchr"
     [ "$amt" -lt 75 ] && { symbol=" ";color='#bbdb44'; }
     [ "$amt" -lt 50 ] && { symbol=" ";color='#f7e379'; }

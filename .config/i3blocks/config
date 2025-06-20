@@ -29,6 +29,13 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+#Weather
+[weather]
+interval=1800
+LOCATION=Bangalore
+command=$SCRIPT_DIR/weather.sh
+format=json
+
 #Brightness
 [brightness]
 interval=once
@@ -60,10 +67,10 @@ command=$SCRIPT_DIR/battery.sh
 format=json
 
 #Bluetooth device
-[bluetooth]
-interval=once
-signal=13
-command=$SCRIPT_DIR/bluetooth.sh
+#[bluetooth]
+#interval=once
+#signal=13
+#command=$SCRIPT_DIR/bluetooth.sh
 
 # Date Time
 [time]
@@ -91,44 +98,44 @@ interval=30
 # The directory defaults to $HOME if the instance is not specified.
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
-[disk]
-label=HOME
+#[disk]
+#label=HOME
 #DIR=/mnt/data
-interval=30
+#interval=30
 
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-[iface]
+#[iface]
 #IFACE=wlan0
-color=#00FF00
-interval=10
-separator=false
+#color=#00FF00
+#interval=10
+#separator=false
 
-[wifi]
+#[wifi]
 #INTERFACE=wlp3s0
-label=wifi:
-interval=10
-separator=false
+#label=wifi:
+#interval=10
+#separator=false
 
-[bandwidth]
+#[bandwidth]
 #INTERFACE=eth0
-interval=5
+#interval=5
 
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-[cpu_usage]
-label=CPU
-interval=10
-min_width=CPU 100.00%
+#[cpu_usage]
+#label=CPU
+#interval=10
+#min_width=CPU 100.00%
 #separator=false
 
-[load_average]
-label=LOAD
-interval=10
+#[load_average]
+#label=LOAD
+#interval=10
 
 
 

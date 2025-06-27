@@ -32,27 +32,31 @@ function get_weather_icon {
     declare -l type="$2"
     #From: https://github.com/chubin/wttr.in/blob/master/lib/constants.py
     case "$type" in
+        *"sunny"*|*"clear"*)
+            $is_daytime && echo " " || echo " "
+            ;;
         *"partly cloudy"*)
             $is_daytime && echo " " || echo " "
             ;;
-        *"sunny"*)
-            echo " "
-            ;;
-        *"cloudy"*)
+        *"cloudy"*|*"overcast"*)
             echo " "
             ;;
         #Never snows in India, so *Light/Heavy* will most likely be rain
         *"light"*|*"patchy"*)
             $is_daytime && echo " " || echo " "
             ;;
-        *"moderate"*|*"heavy"*)
+        *"moderate"*)
+            echo " "
+            ;;
+        *"heavy"*|*"torrential"*)
             echo " "
             ;;
         *"thunder"*)
             echo " "
             ;;
+        #Unknown
         *)
-            $is_daytime && echo " " || echo " "
+            echo ""
             ;;
     esac
 }
@@ -62,11 +66,12 @@ case $BLOCK_BUTTON in
         2) get_forecast;;
 	3) notify-send "🌈 Weather module" "\- Left click for full forecast.
 - Middle click to update forecast." ;;
-        *) should_get_forecast && get_forecast;;
 esac
 
+should_get_forecast && get_forecast
+
 current_temps=$(sed -e '1,3d;s/\x1B\[[0-9;]*[mK]//g;4q' "$weatherreport" | grep -o '[0-9()]\+') #current_temp(feels_like)
-type=$(sed -e '1,2d;s/\x1B\[[0-9;]*[mK]//g;3q'  "$weatherreport" | grep -Po '\s+\K[A-Za-z ]+$')
+type=$(sed -e '1,2d;s/\x1B\[[0-9;]*[mK]//g;3q'  "$weatherreport" | grep -Po '\s+\K[A-Za-z\s]+$')
 
 # Determine day or night
 hour=$(date +%H)

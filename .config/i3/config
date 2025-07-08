@@ -51,59 +51,7 @@ include ./include/key-bindings.conf
 assign [class=$bclass] $ws2
 assign [class=$file_explorer] $ws3
 
-#Colors
-set $transp #00000000
-set_from_resource $black i3wm.black #000000
-
-set_from_resource $sfg i3wm.selforeground
-set_from_resource $sbg i3wm.selbackground
-
-set_from_resource $bg i3wm.background
-set_from_resource $fg i3wm.foreground
-
-set_from_resource $ifg i3wm.color2
-set_from_resource $ibg i3wm.color6
-
-set_from_resource $color5 i3wm.color5
-
-# window colors
-#			    border                      background                  text                         indicator	   child border
-client.focused		    $sbg                        $sbg                        $sfg                          $fg	           $fg
-client.unfocused	    $bg                         $bg                         $fg                           $transp	   $transp
-client.focused_inactive	    $sbg                        $sbg                        $sfg			  $transp	   $transp
-client.urgent		    $fg                         $fg                         $bg                           $sfg	           $sfg
-
-# bar
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-  	#status_command i3status -c $XDG_CONFIG_HOME/i3status/i3status.conf
-	font pango:NotoSans-Regular 12
-        status_command SCRIPT_DIR=$XDG_DATA_HOME/i3blocks/scripts/ i3blocks
-	position top
-	colors {
-		background $bg
-	    	separator $fg
-		#                  border             background         text
-		focused_workspace  $sbg               $sbg               $sfg
-		inactive_workspace $bg                $bg                $fg
-		urgent_workspace   $fg                $fg                $bg
-	}
-}
-
-# Outer gaps for all windows: space along the screen edges.
-gaps outer 5px
-# Inner gap between windows
-gaps inner 5px
-# inverse_outer only enables outer gaps when there is exactly one
-# window or split container on the workspace.
-smart_gaps inverse_outer
-hide_edge_borders none
-
-#Window borders
-default_border pixel 2
-default_floating_border pixel 2
-#Dont need borders when we have only a single window
-hide_edge_borders smart 
-#If certain windows need special treatment, use below eg: for browser
-#for_window [class=$bclass] border pixel 3
+#Colors and UI
+include ./include/colors.conf
+include ./include/windows.conf
+include ./include/bar.conf

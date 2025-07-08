@@ -29,11 +29,16 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+# Date Time
+[time]
+interval=60
+command=$SCRIPT_DIR/date.sh
+
 #Weather
 [weather]
 interval=1800
 LOCATION=Bangalore
-command=$SCRIPT_DIR/weather.sh
+command=$SCRIPT_DIR/weather3.sh
 format=json
 
 #Brightness
@@ -59,6 +64,13 @@ command=$SCRIPT_DIR/mic.sh
 format=json
 STEP=5%
 
+# Memory usage
+# The type defaults to "mem" if the instance is not specified.
+#[memory]
+#separator=true
+#interval=30
+#command=$SCRIPT_DIR/memory.sh
+
 # Battery indicator
 [battery]
 interval=60
@@ -72,26 +84,13 @@ format=json
 #signal=13
 #command=$SCRIPT_DIR/bluetooth.sh
 
-# Date Time
-[time]
-interval=60
-command=$SCRIPT_DIR/date.sh
-
 #NOTE: Unused stuff below
 
-# Memory usage
-#
-# The type defaults to "mem" if the instance is not specified.
-[memory]
-label=MEM
-separator=false
-interval=30
-
-[memory]
-label=SWAP
-instance=swap
-separator=false
-interval=30
+#[memory]
+#label=SWAP
+#instance=swap
+#separator=false
+#interval=30
 
 # Disk usage
 #

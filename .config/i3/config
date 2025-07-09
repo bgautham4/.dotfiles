@@ -48,8 +48,8 @@ set $ws10 "10"
 # Include the bindings
 include ./include/key-bindings.conf
 #Force app to load in certain workspaces
-assign [class=$bclass] $ws2
-assign [class=$file_explorer] $ws3
+assign [class=$bclass window_type=normal] $ws2
+assign [class=$file_explorer window_type=normal] $ws3
 
 #Colors and UI
 include ./include/colors.conf

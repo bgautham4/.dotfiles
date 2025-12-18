@@ -85,7 +85,8 @@ endif
 " enable true colors support "
 set termguicolors
 " Vim colorscheme "
-colorscheme gruvbox 
+" set background=dark
+colorscheme catppuccin-mocha 
 
 " nohlsearch on Esc "
 nnoremap <silent> <Esc> :nohlsearch<CR>

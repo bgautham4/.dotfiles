@@ -1,0 +1,114 @@
+/*
+ * Minimal Rofi Theme
+ * Palette: 4 colors
+ */
+
+configuration {
+    modi: "drun,window,windowcd,ssh";
+}
+
+@theme "/dev/null"
+
+* {
+    bg-dark: #09090a;
+    bg-sel: #574725;
+    bg: #1a1c1e;
+    fg-dark: #a6a6a6;
+    fg: #e6e6e6;
+    spacing: 0;
+    background-color: transparent;
+    font: "Noto Sans Mono 12";
+}
+
+window {
+    background-color: @bg-dark;
+    border: 1px;
+    border-color: @fg-dark;
+}
+
+mainbox {
+    children: [inputbar, listview];
+    spacing: 10px;
+    padding: 10px;
+}
+
+inputbar {
+    padding: 0 10px;
+    children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+    enabled: true;
+    text-color: @fg;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0 1ch 0 0;
+    text-color: @fg;
+}
+
+entry {
+    text-color: @fg;
+    placeholder-color: @fg-dark;
+}
+
+case-indicator {
+    text-color: @fg-dark;
+}
+
+listview {
+    lines: 4;
+    scrollbar: false;
+    margin: 0 10px;
+    border: 0;
+    dynamic: true;
+}
+
+element {
+    padding: 8px;
+    margin: 2px 0;
+    border-radius: 4px;
+    background-color: @bg-dark;
+    children: [element-icon, element-text];
+}
+
+element selected {
+    background-color: @bg-sel;
+}
+
+element-icon {
+    size: 2ch;
+    padding: 5px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: @fg-dark;
+}
+
+element-text selected {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+
+textbox {
+    text-color: @fg;
+}
+
+message {
+    padding: 10px;
+    background-color: @bg;
+    text-color: @fg;
+}
+
+/* Scrollbar styling */
+scrollbar {
+    width: 4px;
+    border: 0;
+    handle-color: @fg-dark;
+    handle-width: 8px;
+    padding: 0;
+}

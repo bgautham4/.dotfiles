@@ -159,9 +159,11 @@ return {
         texlab = {},
       }
       --Setup language servers specified in servers^
-      local lspconfig = require 'lspconfig'
+      --local lspconfig = require 'lspconfig' --NOTE: will soon be deprecated
       for server, opts in pairs(servers) do
-        lspconfig[server].setup(opts)
+        vim.lsp.config(server, opts)
+        vim.lsp.enable(server)
+        --lspconfig[server].setup(opts) --NOTE: will soon be deprecated
       end
       -- Show inline diagnostic as virtual text
       vim.diagnostic.config {

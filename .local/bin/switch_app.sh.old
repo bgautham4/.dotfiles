@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+case "$1" in
+    'terminal') app='Alacritty' ;;
+    'browser') app='Brave-browser' ;;
+    'pdfviewer') app='okular' ;;
+    *) exit 1;;
+esac
+
+xdotool search --onlyvisible --class "$app" windowraise windowfocus || exit 0
+# Get the position of the window currently in focus
+# and move the mouse over to the center of that window
+# using xdotool(1)
+eval "$(xdotool getwindowfocus -f getwindowgeometry --shell)"
+xdotool mousemove "$(( X + WIDTH / 2))" "$((Y + HEIGHT / 2))"

@@ -1,147 +1,123 @@
-/*
- * Minimal Rofi Theme
- * Palette: 4 colors
- */
-
 configuration {
     modi: "drun,window,windowcd,ssh";
 }
 
-@theme "/dev/null"
+@import "catppuccin-mocha"
 
 * {
-    /* Catppuccin Lavender */
-    rosewater: #f5e0dc;
-    flamingo: #f2cdcd;
-    pink: #f5c2e7;
-    mauve: #cba6f7;
-    red: #f38ba8;
-    maroon: #eba0ac;
-    peach: #fab387;
-    yellow: #f9e2af;
-    green: #a6e3a1;
-    teal: #94e2d5;
-    sky: #89dceb;
-    sapphire: #74c7ec;
-    blue: #89b4fa;
-    lavender: #b4befe;
-    text: #cdd6f4;
-    subtext1: #bac2de;
-    subtext0: #a6adc8;
-    overlay2: #9399b2;
-    overlay1: #7f849c;
-    overlay0: #6c7086;
-    surface2: #585b70;
-    surface1: #45475a;
-    surface0: #313244;
-    base: #1e1e2e;
-    mantle: #181825;
-    crust: #11111b;
-
-    /* Semantic mapping */
-    bg-dark: @base;
-    bg: @surface0;
-    bg-sel: @lavender;
-    fg: @text;
-    fg-dark: @subtext0;
-
-    spacing: 0;
-    background-color: transparent;
-    font: "Noto Sans Mono 12";
+    selected-active-foreground:  @background;
+    lightfg:                     @text;
+    separatorcolor:              @foreground;
+    urgent-foreground:           @red;
+    alternate-urgent-background: @lightbg;
+    lightbg:                     @mantle;
+    background-color:            transparent;
+    border-color:                @foreground;
+    normal-background:           @background;
+    selected-urgent-background:  @red;
+    alternate-active-background: @lightbg;
+    spacing:                     2;
+    alternate-normal-foreground: @foreground;
+    urgent-background:           @background;
+    selected-normal-foreground:  @lightbg;
+    active-foreground:           @blue;
+    background:                  @base;
+    selected-active-background:  @blue;
+    active-background:           @background;
+    selected-normal-background:  @lightfg;
+    alternate-normal-background: @lightbg;
+    foreground:                  @text;
+    selected-urgent-foreground:  @background;
+    normal-foreground:           @foreground;
+    alternate-urgent-foreground: @red;
+    alternate-active-foreground: @blue;
+    spacing:                     0;
+    font:                        "Noto Sans Mono 12";
 }
-
+//-------- Layout ---------
 window {
-    background-color: @bg-dark;
-    border: 1px;
-    border-color: @surface2;
+    background-color: @background;
+    border:           1px;
+    border-color:     @foreground;
 }
-
 mainbox {
+    padding:  10px;
+    spacing:  10px;
     children: [inputbar, listview];
-    spacing: 10px;
-    padding: 10px;
 }
-
 inputbar {
-    padding: 0 10px;
-    children: [prompt, textbox-prompt-colon, entry, case-indicator];
+    padding:    0 10px;
+    children:   [prompt,textbox-prompt-colon,entry,case-indicator];
 }
-
 prompt {
     enabled: true;
-    text-color: @fg;
+    text-color: @normal-foreground;
 }
-
 textbox-prompt-colon {
     expand: false;
     str: ":";
     margin: 0 1ch 0 0;
-    text-color: @fg;
+    text-color: @foreground;
 }
-
 entry {
-    text-color: @fg;
-    placeholder-color: @fg-dark;
+    text-color:        @normal-foreground;
+    cursor:            text;
+    placeholder-color: Gray;
+    placeholder:       "Search";
 }
-
 case-indicator {
-    text-color: @fg-dark;
+    text-color: @normal-foreground;
 }
-
+// List
 listview {
-    lines: 4;
-    scrollbar: false;
+    lines: 6;
     margin: 0 10px;
-    border: 0;
+    scrollbar:    false;
+    border-color: @separatorcolor;
+    border:       0;
     dynamic: true;
 }
-
+//Elements
 element {
-    padding: 8px;
+    padding: 8px ;
     margin: 2px 0;
     border-radius: 4px;
-    background-color: @bg-dark;
+    background-color: @background;
     children: [element-icon, element-text];
 }
-
 element selected {
-    background-color: @lavender;
+    background-color: @selected-normal-background;
 }
-
 element-icon {
-    size: 2ch;
-    padding: 5px;
+    background-color: transparent;
+    size:             2ch ;
+    padding:          5px;
+    cursor:           inherit;
+    text-color:       inherit;
 }
-
-element-icon selected {
-    text-color: @crust;
-}
-
 element-text {
     background-color: transparent;
-    text-color: @fg-dark;
+    cursor:           inherit;
+    highlight:        inherit;
+    text-color:       inherit;
 }
-
 element-text selected {
     background-color: transparent;
-    text-color: @crust;
+    text-color:       @selected-normal-foreground;
 }
-
+//Messages
 textbox {
-    text-color: @fg;
+    text-color: @foreground;
 }
-
 message {
-    padding: 10px;
-    background-color: @bg;
-    text-color: @fg;
+    padding:          10px;
+    background-color: @background;
+    text-color:       @foreground;
 }
-
-/* Scrollbar styling */
 scrollbar {
-    width: 4px;
-    border: 0;
-    handle-color: @fg-dark;
-    handle-width: 8px;
-    padding: 0;
+    width:        4px ;
+    padding:      0;
+    handle-width: 8px ;
+    border:       0;
+    handle-color: @normal-foreground;
 }

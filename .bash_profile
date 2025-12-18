@@ -28,3 +28,9 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx
 fi
+
+# For ssh based logins OR on other tty(s), above wont execute. Source bashrc
+# and drop into fish.
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi

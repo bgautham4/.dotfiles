@@ -17,6 +17,12 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export LESSHISTFILE="-" #Dont save history for less program
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
+#Default wineprefix
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+
+#ICEauthority
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+
 #xinit
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
@@ -27,10 +33,4 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 #startx
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx
-fi
-
-# For ssh based logins OR on other tty(s), above wont execute. Source bashrc
-# and drop into fish.
-if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
 fi

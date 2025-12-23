@@ -16,7 +16,7 @@ configuration {
     normal-background:           @background;
     selected-urgent-background:  @red;
     alternate-active-background: @lightbg;
-    spacing:                     2;
+//    spacing:                     2;
     alternate-normal-foreground: @foreground;
     urgent-background:           @background;
     selected-normal-foreground:  @lightbg;

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # cycle windows of the currently focused app.
 # also center mouse over it. This is acheived by using

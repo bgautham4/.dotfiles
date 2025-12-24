@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Get the position of the window currently in focus
 # and move the mouse over to the center of that window

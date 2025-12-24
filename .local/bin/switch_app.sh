@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-function switch_app {
+switch_app() {
     # Try to change focus to specified application, but
     # dont launch if not found using jumpapp(1)
     jumpapp -c "$1" -wNC dummy 2> /dev/null

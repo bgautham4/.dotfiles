@@ -15,22 +15,23 @@ export TEXMFCONFIG="$XDG_CONFIG_HOME"/texlive/texmf-config
 export PYTHON_HISTORY="$XDG_STATE_HOME"/python/history
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export LESSHISTFILE="-" #Dont save history for less program
+
+#XAuthority
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+#ICEauthority
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 
 #Default wineprefix
 export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 
-#ICEauthority
-export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+#Qt theming
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 #xinit
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 
-#export QT_STYLE_OVERRIDE=kvantum
-export QT_QPA_PLATFORMTHEME=qt6ct
-
-#startx
+#Autostart X on login
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx
 fi

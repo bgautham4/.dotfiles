@@ -1,3 +1,0 @@
-[submodule "/home/gautham/.config/nvim"]
-	path = /home/gautham/.config/nvim
-	url = git@github.com:bgautham4/nvim.git

@@ -5,119 +5,179 @@ configuration {
 @import "catppuccin-mocha"
 
 * {
-    selected-active-foreground:  @background;
-    lightfg:                     @text;
-    separatorcolor:              @foreground;
-    urgent-foreground:           @red;
-    alternate-urgent-background: @lightbg;
-    lightbg:                     @mantle;
-    background-color:            transparent;
-    border-color:                @foreground;
-    normal-background:           @background;
-    selected-urgent-background:  @red;
-    alternate-active-background: @lightbg;
-//    spacing:                     2;
-    alternate-normal-foreground: @foreground;
-    urgent-background:           @background;
-    selected-normal-foreground:  @lightbg;
-    active-foreground:           @blue;
+    /* Base */
     background:                  @base;
-    selected-active-background:  @blue;
-    active-background:           @background;
-    selected-normal-background:  @lightfg;
-    alternate-normal-background: @lightbg;
     foreground:                  @text;
-    selected-urgent-foreground:  @background;
+    lightbg:                     @surface0;
+    lightfg:                     @subtext1;
+
+    /* Accent */
+    accent:                      @lavender;
+
+    /* Normal */
+    normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-urgent-foreground: @red;
-    alternate-active-foreground: @blue;
+
+    /* Selected */
+    selected-normal-background:  @lavender;
+    selected-normal-foreground:  @base;
+
+    /* Active */
+    active-background:           @lightbg;
+    active-foreground:           @lavender;
+    
+    /* Active + Selected */
+    selected-active-background:  @lavender;
+    selected-active-foreground:  @base;
+
+    /* Urgent (kept restrained) */
+    urgent-background:           @background;
+    urgent-foreground:           @red;
+    selected-urgent-background:  @red;
+    selected-urgent-foreground:  @base;
+
+    /* Alternates */
+    //alternate-normal-background: @lightbg;
+    //alternate-normal-foreground: @foreground;
+    //alternate-active-background: @lightbg;
+    //alternate-active-foreground: @lavender;
+    //alternate-urgent-background: @lightbg;
+    //alternate-urgent-foreground: @red;
+
+    /* UI */
+    separatorcolor:              @surface2;
+    border-color:                @surface2;
+    background-color:            transparent;
+
     spacing:                     0;
     font:                        "Noto Sans Mono 12";
 }
-//-------- Layout ---------
+
+/* -------- Window -------- */
 window {
     background-color: @background;
     border:           1px;
-    border-color:     @foreground;
+    border-color:     @border-color;
+    border-radius:    8px;
 }
+
+/* -------- Layout -------- */
 mainbox {
-    padding:  10px;
+    padding:  12px;
     spacing:  10px;
     children: [inputbar, listview];
 }
+
+/* -------- Input -------- */
 inputbar {
-    padding:    0 10px;
-    children:   [prompt,textbox-prompt-colon,entry,case-indicator];
+    padding:    6px 10px;
+    background-color: @surface0;
+    border-radius:    6px;
+    children:   [prompt, textbox-prompt-colon, entry, case-indicator];
 }
+
 prompt {
     enabled: true;
-    text-color: @normal-foreground;
+    text-color: @lavender;
 }
+
 textbox-prompt-colon {
     expand: false;
     str: ":";
     margin: 0 1ch 0 0;
-    text-color: @foreground;
+    text-color: @lavender;
 }
+
 entry {
-    text-color:        @normal-foreground;
+    text-color:        @foreground;
     cursor:            text;
-    placeholder-color: Gray;
+    placeholder-color: @overlay1;
     placeholder:       "Search";
 }
+
 case-indicator {
-    text-color: @normal-foreground;
+    text-color: @lavender;
 }
-// List
+
+/* -------- List -------- */
 listview {
-    lines: 6;
-    margin: 0 10px;
-    scrollbar:    false;
-    border-color: @separatorcolor;
-    border:       0;
-    dynamic: true;
+    lines:       6;
+    margin:      4px 6px;
+    scrollbar:   false;
+    border:      0;
+    dynamic:     true;
 }
-//Elements
+
+/* -------- Elements -------- */
 element {
-    padding: 8px ;
-    margin: 2px 0;
-    border-radius: 4px;
-    background-color: @background;
+    padding:        8px;
+    margin:         2px 0;
+    border-radius:  6px;
+    background-color: transparent;
     children: [element-icon, element-text];
 }
+
+element alternate {
+    background-color: @background;
+}
+
+element alternate normal {
+    background-color: @background;
+}
+
+element active {
+    border-color: @lavender;
+}
+
 element selected {
     background-color: @selected-normal-background;
 }
+
+element selected active {
+    background-color: @selected-active-background;
+    border-color:     transparent;
+}
+
 element-icon {
     background-color: transparent;
-    size:             2ch ;
+    size:             2ch;
     padding:          5px;
     cursor:           inherit;
     text-color:       inherit;
 }
+
+element-icon active {
+    text-color: @lavender;
+}
+
 element-text {
     background-color: transparent;
     cursor:           inherit;
     highlight:        inherit;
     text-color:       inherit;
 }
+
 element-text selected {
-    background-color: transparent;
-    text-color:       @selected-normal-foreground;
+    text-color: @selected-normal-foreground;
 }
-//Messages
+
+/* -------- Messages -------- */
 textbox {
     text-color: @foreground;
 }
+
 message {
     padding:          10px;
-    background-color: @background;
+    background-color: @surface0;
+    border-radius:    6px;
     text-color:       @foreground;
 }
+
+/* -------- Scrollbar -------- */
 scrollbar {
-    width:        4px ;
+    width:        4px;
     padding:      0;
-    handle-width: 8px ;
+    handle-width: 8px;
     border:       0;
-    handle-color: @normal-foreground;
+    handle-color: @lavender;
 }

@@ -7,7 +7,7 @@ switch_app() {
 }
 
 case "$1" in
-    'terminal') switch_app 'Alacritty' ;;
+    'terminal') switch_app 'Alacritty' || switch_app 'Xfce4-terminal' ;;
     'browser')  switch_app 'Brave-browser' || switch_app 'firefox';;
     'pdfviewer') switch_app 'okular' ;;
     *) exit 1;;

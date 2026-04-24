@@ -90,3 +90,7 @@ colorscheme catppuccin-mocha
 
 " nohlsearch on Esc "
 nnoremap <silent> <Esc> :nohlsearch<CR>
+
+" Disable modeline "
+set nomodeline
+set modelines=0

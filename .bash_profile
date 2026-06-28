@@ -31,6 +31,12 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 
+#openai codex
+export CODEX_HOME="$XDG_CONFIG_HOME"/codex
+
+#claude code
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME"/claude
+
 #Autostart X on login
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx
